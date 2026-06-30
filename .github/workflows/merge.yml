@@ -1,0 +1,33 @@
+name: Merge Queue Demo
+
+on:
+  pull_request:
+    branches:
+      - main
+
+  merge_group:
+    branches:
+      - main
+
+jobs:
+  demo:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Print Event Information
+        run: |
+          echo "=============================="
+          echo "GitHub Event : ${{ github.event_name }}"
+          echo "Branch       : ${{ github.ref }}"
+          echo "Commit SHA   : ${{ github.sha }}"
+          echo "Actor        : ${{ github.actor }}"
+          echo "=============================="
+
+      - name: Simulate CI
+        run: |
+          echo "Running CI..."
+          sleep 60
+          echo "CI completed successfully!"
