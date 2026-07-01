@@ -1,0 +1,35 @@
+name: Code Quality
+
+on:
+  pull_request:
+    branches:
+      - main
+
+  merge_group:
+    branches:
+      - main
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Simulate Quality Check
+        run: |
+          echo "Running Code Quality..."
+          sleep 60
+
+      - name: Read Quality Control
+        run: |
+          STATUS=$(cat controls/quality.txt)
+
+          echo "Quality Status = $STATUS"
+
+          if [ "$STATUS" = "FAIL" ]; then
+            echo "Quality Failed"
+            exit 1
+          fi
+
+          echo "Quality Passed"
