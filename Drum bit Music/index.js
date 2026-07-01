@@ -79,3 +79,4 @@ function buttonAnimation(currentKey) {
   }, 100);
 
 }
+console.log("Merge Queue POC - PR2");
